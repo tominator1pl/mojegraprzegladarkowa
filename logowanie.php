@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class='row'>
 			<div class="col-md-4 col-md-offset-4 jumbotron">
-				<form class="form-login" method='post'>
+				<form class="form" method='post'>
 					<h2 class="form-login-heading">Logowanie</h2>
 					<label for="inputLogin">Login</label>
 					<input type="text" id="inputLogin" class="form-control" placeholder="login" required autofocus name='login'>

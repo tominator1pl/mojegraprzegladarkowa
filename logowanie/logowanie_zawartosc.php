@@ -1,3 +1,4 @@
+<div class="col-md-4 col-md-offset-4 jumbotron">
 <?php
 if(isset($_SESSION['permission'])){
 switch($_SESSION['permission']){
@@ -23,3 +24,4 @@ switch($_SESSION['permission']){
 		}
 }else{include 'logowanie_loguj_form.php';}
 ?>
+</div>

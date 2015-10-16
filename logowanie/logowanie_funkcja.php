@@ -27,7 +27,7 @@ if(isset($_POST['login']))
 	else
 	{
 		rozlacz($p);
-		echo "Niepoprawny login lub haslo";
+		header("Location: ../index.php?log=err");
 	}
 }
 ?>

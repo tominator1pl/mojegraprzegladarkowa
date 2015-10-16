@@ -1,9 +1,10 @@
-<div class="glownaLoguj">
-Logowanie
-<form name='logowanie' method='post' action="logowanie/logowanie_funkcja.php">
-Login:<input type='text' name='login'>
-<br>Hasło:<input type='password' name='haslo'>
-<br><input type='submit' name='loguj' value='Zaloguj'>
-<br><a href="rejestracja.php">Zarejestruj się!</a>
+<div class='text-center lead'>Logowanie</div>
+<form name='logowanie' class='form' method='post' action="logowanie/logowanie_funkcja.php">
+<label for='inputLogin'>Login:</label>
+<input type='text' class='form-control' id='inputLogin' name='login' placeholder="Login" required>
+<label for='inputPass'>Hasło:</label>
+<input type='password' class='form-control' id='inputPass' name='haslo' placeholder="Hasło" required>
+<?php if(isset($_GET['log']) && $_GET['log'] === 'err')echo 'Nieprawidłowy Login lub Hasło'?>
+<input type='submit' name='loguj' class='btn btn-primary' value='Zaloguj'>
+<a class='btn btn-link' href="rejestracja.php">Zarejestruj się!</a>
 </form>
-</div>
