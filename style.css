@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .glownaLoguj{
 	width: 200px;
 	height: 150px;
@@ -11,4 +12,10 @@
     left: 50%;
     margin-top: -200px;
     margin-left: -400px;
+=======
+.glownaLoguj{
+	width:100px;
+	height:100px:
+	background-color: #f00;
+>>>>>>> a7a62e6566ac6206f7b5a628a5ee6de6eff1131a
 }
