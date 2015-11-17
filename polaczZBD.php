@@ -18,6 +18,13 @@
 	{
 		mysqli_close($p);
 	}
+	
+	function getFromDB($pol, $tab, $kol, $chek, $ans){
+		$zapytanie = "SELECT $kol FROM $tab WHERE $chek LIKE '$ans' ;";
+		$res = $pol->query($zapytanie);
+		$res2 = $res->fetch_assoc();
+		return $res2[$kol];
+	}
 ?>
 
 <?php

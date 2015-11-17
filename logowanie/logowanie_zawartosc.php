@@ -1,4 +1,4 @@
-<div class="col-md-4 col-md-offset-4 jumbotron">
+<div>
 <?php
 if(isset($_SESSION['permission'])){
 switch($_SESSION['permission']){

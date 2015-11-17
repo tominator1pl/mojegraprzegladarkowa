@@ -1,4 +1,7 @@
 <?php
+function filtruj($nazwa){
+	return mysql_real_escape_string(stripslashes($nazwa));
+}
 session_start();
 include_once '../polaczZBD.php';
 $salt = "marynowany";
@@ -9,16 +12,11 @@ if(isset( $_POST['rejestruj'] )){
 	}else{
 		if ($_POST['pass'] === $_POST['pass2']){
 			$p = polacz();
-			$login = stripslashes($_POST['login']);
-			$pass = stripslashes($_POST['pass']);
-			$nick = stripslashes($_POST['nick']);
-			$pelna = stripslashes($_POST['pelna']);
-			$mail = stripslashes($_POST['mail']);
-			$login = mysql_real_escape_string($login);
-			$pass = mysql_real_escape_string($pass);
-			$nick = mysql_real_escape_string($nick);
-			$pelna = mysql_real_escape_string($pelna);
-			$mail = mysql_real_escape_string($mail);
+			$login = filtruj($_POST['login']);
+			$pass = filtruj($_POST['pass']);
+			$nick = filtruj($_POST['nick']);
+			$pelna = filtruj($_POST['pelna']);
+			$mail = filtruj($_POST['mail']);
 			$passw = md5($salt . $pass);
 			$confirm = md5("con" . $login);
 			$zapytanie = "SELECT COUNT(*) FROM users WHERE Login LIKE '".$login."';";
