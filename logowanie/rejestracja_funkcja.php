@@ -30,24 +30,24 @@ if(isset( $_POST['rejestruj'] )){
 				if($res){
 					print("Konto zostało utworzone!<br>Proszę poczekać na aktywację od administratora!");
 					echo '<br>Przekierowanie nastąpi za 5 sekund.';
-					header("Refresh: 5; Location: index.php");
-					/*$wiadomosc = "<html>
+					echo '<meta http-equiv="refresh" content="5; url=../index.php"/>';
+					$wiadomosc = "<html>
 					<head>
 					<meta charset='utf-8'>
 					</head>
 					<body>
 					<h3>Potwierdzenie</h3>
 					Dziękujemy za zarejestrowanie na naszej stronie.
-					<br>Proszę wcisnąć link aktywacyjny lub skopiować do paska przeglądarki.
-					<br>Link aktywacyjny: <a href='http://localhost:8080/mailconfirm.php?confirm=$confirm'>http://localhost:8080/mailconfirm.php?confirm=a</a>
+					<br>Proszę kliknąć link aktywacyjny lub skopiować go do paska przeglądarki.
+					<br>Link aktywacyjny: <a href='http://localhost/mailconfirm.php?confirm=$confirm'>http://localhost/mailconfirm.php?confirm=$confirm</a>
 					</body>
 					</html>";
 					$headers = "MIME-Version: 1.0" . "\r\n";
 					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-					$headers .= 'From: strona EZN' . "\r\n";
+					$headers .= 'From: MOJA STRONA MOŻe' . "\r\n";
 					if(mail($mail,"Aktywacja konta",$wiadomosc, $headers)){
 						print("<br>Na podany adres email został wysłany link aktywacyjny!");
-					}*/
+					}
 				}
 			}
 			rozlacz($p);

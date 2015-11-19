@@ -10,6 +10,7 @@
 		}
 		else
 		{
+			$p->set_charset('utf8');
 			return $p;
 		}
 	}
@@ -19,7 +20,7 @@
 		mysqli_close($p);
 	}
 	
-	function getFromDB($pol, $tab, $kol, $chek, $ans){
+	function getFromDB(mysqli $pol, $tab, $kol, $chek, $ans){
 		$zapytanie = "SELECT $kol FROM $tab WHERE $chek LIKE '$ans' ;";
 		$res = $pol->query($zapytanie);
 		$res2 = $res->fetch_assoc();

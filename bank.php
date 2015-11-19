@@ -6,25 +6,37 @@
 	<title>Bank</title>
 </head>
 <body class="jumbotron-color">
-<div class="row row-w-iframe">
+<div class="row row-w-iframe text-center">
+    <h1>Bank</h1>
 <?php $p = polacz(); ?>
 		<div class="col-sm-4">
-		<div class="text-center lead">Postać</div>
-		<div class="lead">Haisy: <?php echo getFromDB($p,'players','Money','ID',$_SESSION['id_player'])?></div>
-		<form name='przelejDo' class='form-group' method='post' action="strona/przelej.php">
-		<label for='inputKwotaDo'>Wpłać do banku:</label>
-		<input type='text' class='form-control' id='inputKwotaDo' name='kwotaDo'>
-		<input type='submit' name='przelejDo' value='Przelej'>
-		</form>
+            <div class="text-center lead">Postać</div>
+		    <div class="lead">Haisy: <span id="mojeHaisy"><?php echo getFromDB($p,'players','Money_Player','ID_Player',$_SESSION['id_player'])?></span></div>
 		</div>
+        <div class="col-sm-4 text-center">
+            <form name='przelej' class='form' method='post' action="strona/bank/bank_funkcja.php">
+                <label for='inputKwota'>Kwota:</label>
+                <input type='text' class='form-control' id='inputKwota' name='kwota'>
+                <input type='submit' class="btn btn-default" name='przelejDo' value='Wpłać'>
+                <input type='submit' class="btn btn-default" name='przelejZ' value='Wypłać'>
+            </form>
+            <?php if(isset($_GET['tran'])){
+                switch($_GET['tran']) {
+                    case 'to':
+                        echo "<div class='lead'>Wpłata powiodła się</div>";
+                        break;
+                    case 'from':
+                        echo "<div class='lead'>Wypłata powiodła się</div>";
+                        break;
+                    case 'nomoney':
+                        echo "<div class='lead'>Nie masz wystarczająco środków</div>";
+                        break;
+                }
+            } ?>
+        </div>
 		<div class="col-sm-4">
-		<div class="text-center lead">Bank</div>
-		<div class="lead">Haisy: <?php echo getFromDB($p,'bank','Money','ID',getFromDB($p,'players','BANK_ID','ID',$_SESSION['id_player']))?></div>
-		<form name='przelejZ' class='form-group' method='post' action="strona/przelej.php">
-		<label for='inputKwotaZ'>Wypłać z banku:</label>
-		<input type='text' class='form-control' id='inputKwotaZ' name='kwotaZ'>
-		<input type='submit' name='przelejZ' value='Przelej'>
-		</form>
+            <div class="text-center lead">Konto</div>
+            <div class="lead">Haisy: <span id="bankHaisy"><?php echo getFromDB($p,'bank','Money_Bank','ID_Bank',getFromDB($p,'players','BANK_ID','ID_Player',$_SESSION['id_player']))?></span></div>
 		</div>
 	<?php rozlacz($p); ?>
 </div>
@@ -32,5 +44,6 @@
     <script src="js.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="strona/bank/bank_skrypt.js"></script>
 </body>
 </html>

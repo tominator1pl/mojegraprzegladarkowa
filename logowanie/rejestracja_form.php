@@ -16,6 +16,6 @@
 	<input type='password' class='form-control' id='inputPass2' name='pass2' placeholder="Hasło" required>
 	<label>Akceptuje <a href="regulamin.html" target="_blank">Regulamin</a>&nbsp;<input type='checkbox' name='regula'></label>
 	</table>
-	<br><input type='submit' name='rejestruj' value='Wyślij'>
+	<br><input type='submit' name='rejestruj' class="btn btn-default"  value='Wyślij'>
 	</form>
 </div>
