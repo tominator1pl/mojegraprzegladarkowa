@@ -19,19 +19,20 @@ if(isset( $_POST['rejestruj'] )){
 			$mail = filtruj($_POST['mail']);
 			$passw = md5($salt . $pass);
 			$confirm = md5("con" . $login);
+			$czas = date('Y-m-d H:i:s');
 			$zapytanie = "SELECT COUNT(*) FROM users WHERE Login LIKE '".$login."';";
 			$res = $p->query($zapytanie);
 			$row = $res->fetch_array(MYSQL_NUM);
 			if ($row[0] == 1) {
 				print("Użytkownik z tym loginem już istnieje");
 			} else {
-				$zapytanie2 = "INSERT INTO users (PERMISSIONS_ID, Login, Pass, Nickname, Pelna, EMail) VALUES (2,'$login','$passw','$nick','$pelna','$mail')";
+				$zapytanie2 = "INSERT INTO users (PERMISSIONS_ID, Login, Pass, Nickname, Pelna, EMail, LastLogout) VALUES (2,'$login','$passw','$nick','$pelna','$mail','$czas')";
 				$res = $p->query($zapytanie2);
 				if($res){
-					print("Konto zostało utworzone!<br>Proszę poczekać na aktywację od administratora!");
+					print("Konto zostało utworzone!");
 					echo '<br>Przekierowanie nastąpi za 5 sekund.';
 					echo '<meta http-equiv="refresh" content="5; url=../index.php"/>';
-					$wiadomosc = "<html>
+					/*$wiadomosc = "<html>
 					<head>
 					<meta charset='utf-8'>
 					</head>
@@ -47,7 +48,7 @@ if(isset( $_POST['rejestruj'] )){
 					$headers .= 'From: MOJA STRONA MOŻe' . "\r\n";
 					if(mail($mail,"Aktywacja konta",$wiadomosc, $headers)){
 						print("<br>Na podany adres email został wysłany link aktywacyjny!");
-					}
+					}*/
 				}
 			}
 			rozlacz($p);

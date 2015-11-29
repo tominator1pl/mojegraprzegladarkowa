@@ -22,6 +22,7 @@ if(isset($_POST['login']))
 		$_SESSION['id_user'] = $row['ID_User'];
 		$_SESSION['id_player'] = $row['PLAYERS_ID'];
 		$_SESSION['permission'] = $row['PERMISSIONS_ID'];
+		updateTime($_SESSION['id_user']);
 		rozlacz($p);
 		header("Location: ../index.php");
 	}

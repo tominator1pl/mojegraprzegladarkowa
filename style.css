@@ -12,24 +12,25 @@
 }
 
 .sidebar{
-	position: absolute;
-	/*margin-left: 0px !important;*/
+	/*position: absolute;
+	margin-left: 0px !important;*/
 	padding-left: 10px !important;
-	width: 200px;
+	padding-right: 10px !important;
+	/*width: 200px;*/
 }
 
 .nie-sidebar{
-	position: relative;
-	width: calc(100% - 210px);
+	/*position: relative;
+	width: calc(100% - 210px);*/
 	padding-left:10px !important;
 	padding-right:10px !important;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	top: 0px;
-	left: 210px;
+	/*top: 0px;
+	left: 210px;*/
 }
 .wybor{
-	width: calc(100% + 70px);
+	width: calc(100% + 20px);
 	padding-top:10px;
 	padding-bottom:10px;
 	padding-left: 10px;
@@ -45,7 +46,7 @@
 }
 
 .moje-logo{
-	width:	80%;
+
 }
 
 .gora-strony{
@@ -100,4 +101,8 @@
 	background-color: #eee;
 	border: 2px solid #aaa;
 	border-radius: 10px;
+}
+.tabelki-iframe{
+	height: 300px !important;
+	overflow: auto;
 }

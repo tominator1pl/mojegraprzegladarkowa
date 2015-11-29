@@ -9,12 +9,12 @@
 	<label for='inputName'>Imię i Nazwisko:</label>
 	<input type='text' class='form-control' id='inputName' name='pelna' placeholder="Imię i Nazwisko" required>
 	<label for='inputEmail'>Adres E-mail:</label>
-	<input type='text' class='form-control' id='inputEmail' name='mail' placeholder="E-mail" required>
+	<input type='email' class='form-control' id='inputEmail' name='mail' placeholder="E-mail" required>
 	<label for='inputPass'>Hasło:</label>
 	<input type='password' class='form-control' id='inputPass' name='pass' placeholder="Hasło" required>
 	<label for='inputPass2'>Powtórz hasło:</label>
 	<input type='password' class='form-control' id='inputPass2' name='pass2' placeholder="Hasło" required>
-	<label>Akceptuje <a href="regulamin.html" target="_blank">Regulamin</a>&nbsp;<input type='checkbox' name='regula'></label>
+	<label>Akceptuje <a href="regulamin.html" target="_blank">Regulamin</a>&nbsp;<input type='checkbox' name='regula' required></label>
 	</table>
 	<br><input type='submit' name='rejestruj' class="btn btn-default"  value='Wyślij'>
 	</form>
