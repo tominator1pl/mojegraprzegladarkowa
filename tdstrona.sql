@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2015 at 12:41 AM
+-- Generation Time: Nov 30, 2015 at 08:54 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -36,9 +36,15 @@ CREATE TABLE `bank` (
 --
 
 INSERT INTO `bank` (`ID_Bank`, `Money_Bank`) VALUES
-(1, 100671),
+(1, 100856),
 (21, 100),
-(22, 100);
+(22, 100),
+(23, 100),
+(24, 100),
+(25, 100),
+(26, 0),
+(27, 100),
+(28, 100);
 
 -- --------------------------------------------------------
 
@@ -80,7 +86,10 @@ CREATE TABLE `inventory` (
 INSERT INTO `inventory` (`ID_Inv`, `ITEMS_ID`, `PLAYERS_ID`, `Name_Inv`) VALUES
 (25, 3, 1, 'Długi Miecz'),
 (41, 4, 1, 'Skórzana Zbroja'),
-(42, 1, 21, 'Miecz');
+(42, 1, 21, 'Miecz'),
+(43, 1, 24, 'Miecz'),
+(44, 1, 25, 'Miecz'),
+(45, 1, 26, 'Miecz');
 
 -- --------------------------------------------------------
 
@@ -134,9 +143,51 @@ INSERT INTO `item_types` (`ID_Type`, `Type_Type`) VALUES
 
 CREATE TABLE `komunikaty` (
   `ID` int(10) UNSIGNED NOT NULL,
-  `Tytul` varchar(45) COLLATE utf8_polish_ci DEFAULT NULL,
-  `Komunikat` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL
+  `PLAYER_ID` int(10) UNSIGNED NOT NULL,
+  `Komunikat` varchar(1000) COLLATE utf8_polish_ci DEFAULT NULL,
+  `Kom_Typ_ID` int(10) NOT NULL,
+  `Data_Kom` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Dumping data for table `komunikaty`
+--
+
+INSERT INTO `komunikaty` (`ID`, `PLAYER_ID`, `Komunikat`, `Kom_Typ_ID`, `Data_Kom`) VALUES
+(7, 1, 'Twoja przygoda na Las się zakończyła. Zysk: Haisy-0, Doświadczenie-0.', 0, '2015-11-30 18:28:45'),
+(8, 1, 'Twoja przygoda na Las się zakończyła. Zysk: Haisy-1, Doświadczenie-1.', 0, '2015-11-30 18:35:10'),
+(9, 1, 'Twoja przygoda na Las się zakończyła. Zysk: Haisy-21, Doświadczenie-27.', 0, '2015-11-30 19:22:11'),
+(10, 25, 'Twoja przygoda na Polana się zakończyła. Zysk: Haisy-0, Doświadczenie-0.', 0, '2015-11-30 19:30:29'),
+(11, 24, 'Twoja przygoda na Polana się zakończyła. Zysk: Haisy-1, Doświadczenie-3.', 0, '2015-11-30 19:33:20'),
+(12, 25, 'Twoja przygoda na Polana się zakończyła. Zysk: Haisy-0, Doświadczenie-1.', 0, '2015-11-30 19:34:30'),
+(13, 26, 'Twoja przygoda na Polana się zakończyła. Zysk: Haisy-0, Doświadczenie-0.', 0, '2015-11-30 19:44:13'),
+(14, 25, 'Twoja przygoda na Polana się zakończyła. Zysk: Haisy-8, Doświadczenie-16.', 0, '2015-11-30 20:04:40'),
+(15, 1, 'Wygrałeś kontra VIP. Zysk: Haisy-10, Doświadczenie-8.', 0, '2015-11-30 20:50:58'),
+(16, 1, 'Wygrałeś kontra VIP. Zysk: Haisy-36, Doświadczenie-28.', 0, '2015-11-30 20:51:27'),
+(17, 1, 'Wygrałeś kontra VIP. Zysk: Haisy-21, Doświadczenie-16.', 0, '2015-11-30 20:52:35'),
+(18, 22, 'Zostałeś zaatakowany przez Niszczyciel. Straty: Haisy-21', 1, '2015-11-30 20:52:35'),
+(19, 22, 'Wygrałeś kontra Ja pierdole podawałem juz login i nick na chuj mi jakas nazwa?!. Zysk: Haisy-40, Doświadczenie-32.', 0, '2015-11-30 20:53:19'),
+(20, 23, 'Zostałeś zaatakowany przez VIP. Straty: Haisy-40', 1, '2015-11-30 20:53:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komunikaty_types`
+--
+
+CREATE TABLE `komunikaty_types` (
+  `ID_Kom_Typ` int(10) NOT NULL,
+  `Name_Kom` varchar(100) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Dumping data for table `komunikaty_types`
+--
+
+INSERT INTO `komunikaty_types` (`ID_Kom_Typ`, `Name_Kom`) VALUES
+(0, 'INFO'),
+(1, 'WARNING'),
+(2, 'ERROR');
 
 -- --------------------------------------------------------
 
@@ -186,9 +237,15 @@ CREATE TABLE `players` (
 --
 
 INSERT INTO `players` (`ID_Player`, `BANK_ID`, `Name_Player`, `Avatar`, `Level`, `Experience`, `Health`, `Money_Player`, `Strength`, `Defence`, `Weapon`, `Armor`, `Przy_ID`) VALUES
-(1, 1, 'Niszczyciel', 'monkey.png', 2, 1754, 100, 0, 10, 8, 25, 41, 14),
+(1, 1, 'Niszczyciel', 'monkey.png', 2, 2024, 100, 0, 10, 8, 25, 41, NULL),
 (21, 21, 'User', 'monkey.png', 1, 0, 100, 0, 2, 2, 42, NULL, NULL),
-(22, 22, 'VIP', 'avatars/2015-11-29_18-58-07_Przechwytywanie.png', 1, 0, 100, 100, 2, 2, NULL, NULL, NULL);
+(22, 22, 'VIP', 'avatars/2015-11-29_18-58-07_Przechwytywanie.png', 1, 32, 100, 73, 2, 2, NULL, NULL, NULL),
+(23, 23, 'Ja pierdole podawałem juz login i nick na chuj mi jakas nazwa?!', 'avatars/2015-11-30_19-19-19_10407921_871101069566806_1911016596083472897_n.jpg', 1, 0, 100, 60, 2, 2, NULL, NULL, NULL),
+(24, 24, 'AnonimowyChlipaczBiałkaOcznego', 'avatars/2015-11-30_19-28-11_images.jpg', 1, 3, 100, 1, 2, 2, NULL, NULL, 26),
+(25, 25, 'sdsdsdsdsdsd', 'avatars/2015-11-30_19-28-51_Moje zdjęcie 71.png', 1, 17, 100, 8, 2, 2, 44, NULL, NULL),
+(26, 26, 'Pieseł', 'avatars/2015-11-30_19-42-40_piesel.jpg', 1, 0, 100, 100, 2, 2, NULL, NULL, 29),
+(27, 27, 'Tomek', 'monkey.png', 1, 0, 100, 100, 2, 2, NULL, NULL, NULL),
+(28, 28, 'Ahraim', 'avatars/2015-11-30_20-03-06_450px-Rose.png', 1, 0, 100, 100, 2, 2, NULL, NULL, 30);
 
 -- --------------------------------------------------------
 
@@ -208,7 +265,9 @@ CREATE TABLE `przygody` (
 --
 
 INSERT INTO `przygody` (`ID_Przy`, `Przy_Type_ID`, `Started`, `For_Time`) VALUES
-(14, 2, '2015-11-30 00:40:34', 930);
+(26, 2, '2015-11-30 19:35:31', 30),
+(29, 2, '2015-11-30 19:47:03', 60),
+(30, 2, '2015-11-30 20:20:56', 10);
 
 -- --------------------------------------------------------
 
@@ -278,9 +337,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID_User`, `PLAYERS_ID`, `PERMISSIONS_ID`, `Login`, `Pass`, `Nickname`, `Pelna`, `EMail`, `LastLogout`) VALUES
-(1, 1, 0, 'admin', 'bcd10a8fdedc9669236c0626fb798799', 'admin', 'admin', 'admin@admin.com', '2015-11-30 00:40:56'),
-(38, 21, 2, 'user', '78622dc73dbe10c274e6171444346546', 'user', 'user', 'user@user', '2015-11-29 18:57:04'),
-(39, 22, 1, 'vip', 'cd17c3fbc4f654ad103d1360afc02267', 'vip', 'vip', 'vip@vip', '2015-11-29 18:59:17');
+(1, 1, 0, 'admin', 'bcd10a8fdedc9669236c0626fb798799', 'admin', 'admin', 'admin@admin.com', '2015-11-30 20:54:23'),
+(38, 21, 2, 'user', '78622dc73dbe10c274e6171444346546', 'user', 'user', 'user@user', '2015-11-30 20:01:10'),
+(39, 22, 1, 'vip', 'cd17c3fbc4f654ad103d1360afc02267', 'vip', 'vip', 'vip@vip', '2015-11-30 20:53:31'),
+(40, 23, 2, 'Łysy Wonsz', 'bbd1254ca73a173dbfa1bab424240488', 'Czym się różni login od nickname''a?', 'Maciej Fornal of course', 'tominator@buziaczek.pl', '2015-11-30 19:23:56'),
+(41, NULL, 2, 'a', '0daa96ec2644908658aea0527196965f', 'a', 'a', 'a@a.pl', '2015-11-30 19:24:29'),
+(42, 24, 2, 'Funnypenetrator', '59cc9c0bd2c8a1f46bbe6a096d028a59', 'Funnypenetrator', 'Grzegorz', 'brzezik1i@gmail.com', '2015-11-30 19:38:14'),
+(43, 25, 2, 'asdasd', 'a98ec9ac18f4d8be7c4baf87484456a3', 'asdasd', 'asdasd', 'asdasd@aasd.com', '2015-11-30 20:05:28'),
+(44, 26, 2, 'sosul', 'f853d94906a1793ca014b31708e9138c', 'sosul', 'a', 'a@b.c', '2015-11-30 19:47:03'),
+(45, NULL, 2, 'kutasyznieba', '5a855e15ad1d8498e2a67870a3af0d8e', 'kutasyznieba', 'Lidia Borowska', 'lborowskaaa@ezn.edu.pl', '2015-11-30 19:55:46'),
+(46, 27, 2, 'bekazemoznawejscnatwojastronexd', '21200b64301b4408edb0e1cd14c98643', 'bananek', 'Andrzej Duda', 'ddddd@dddd.ddd', '2015-11-30 19:58:23'),
+(47, NULL, 2, 'HHUJJJ', '5d3a4d16b9c066d3ae4380f9f3adbc48', 'CHUJECZEK', '!!!1!!111ONEONEOENOE', 'hggf@hujnio', '2015-11-30 19:59:29'),
+(48, 28, 2, 'Martynanieek', '00af3d47b4ea498336927c6e357331ee', 'Ahraim', 'Martyna Śnieżek', 'lili30@vp.pl', '2015-11-30 20:21:09');
 
 --
 -- Indexes for dumped tables
@@ -323,7 +391,15 @@ ALTER TABLE `item_types`
 -- Indexes for table `komunikaty`
 --
 ALTER TABLE `komunikaty`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `PLAYER_ID` (`PLAYER_ID`),
+  ADD KEY `Kom_Typ_ID` (`Kom_Typ_ID`);
+
+--
+-- Indexes for table `komunikaty_types`
+--
+ALTER TABLE `komunikaty_types`
+  ADD PRIMARY KEY (`ID_Kom_Typ`);
 
 --
 -- Indexes for table `permissions`
@@ -380,17 +456,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `ID_Bank` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID_Bank` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `difficult`
 --
 ALTER TABLE `difficult`
-  MODIFY `ID_Dif` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Dif` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `ID_Inv` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `ID_Inv` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -405,7 +481,12 @@ ALTER TABLE `item_types`
 -- AUTO_INCREMENT for table `komunikaty`
 --
 ALTER TABLE `komunikaty`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `komunikaty_types`
+--
+ALTER TABLE `komunikaty_types`
+  MODIFY `ID_Kom_Typ` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
@@ -415,12 +496,12 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `players`
 --
 ALTER TABLE `players`
-  MODIFY `ID_Player` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID_Player` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `przygody`
 --
 ALTER TABLE `przygody`
-  MODIFY `ID_Przy` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_Przy` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `przygody_types`
 --
@@ -435,7 +516,7 @@ ALTER TABLE `shop`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID_User` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID_User` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- Constraints for dumped tables
 --
@@ -452,6 +533,13 @@ ALTER TABLE `inventory`
 --
 ALTER TABLE `items`
   ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`TYPE_ID`) REFERENCES `item_types` (`ID_Type`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `komunikaty`
+--
+ALTER TABLE `komunikaty`
+  ADD CONSTRAINT `komunikaty_ibfk_1` FOREIGN KEY (`PLAYER_ID`) REFERENCES `players` (`ID_Player`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `komunikaty_ibfk_2` FOREIGN KEY (`Kom_Typ_ID`) REFERENCES `komunikaty_types` (`ID_Kom_Typ`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `players`

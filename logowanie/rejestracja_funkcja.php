@@ -8,7 +8,7 @@ $salt = "marynowany";
 if(isset( $_POST['rejestruj'] )){
 	if(isset($_POST['regula'])){
 		if ($_POST['login'] === '' || $_POST['pass'] === '' || $_POST['nick'] === '' || $_POST['pelna'] === '' || $_POST['mail'] === '' || $_POST['pass2'] === ''){
-		print("Proszę uzupełnić luki.");
+			header("Location: ../register.php?kom=fields");
 	}else{
 		if ($_POST['pass'] === $_POST['pass2']){
 			$p = polacz();
@@ -24,7 +24,8 @@ if(isset( $_POST['rejestruj'] )){
 			$res = $p->query($zapytanie);
 			$row = $res->fetch_array(MYSQL_NUM);
 			if ($row[0] == 1) {
-				print("Użytkownik z tym loginem już istnieje");
+				rozlacz($p);
+				header("Location: ../register.php?kom=exists");
 			} else {
 				$zapytanie2 = "INSERT INTO users (PERMISSIONS_ID, Login, Pass, Nickname, Pelna, EMail, LastLogout) VALUES (2,'$login','$passw','$nick','$pelna','$mail','$czas')";
 				$res = $p->query($zapytanie2);
@@ -53,11 +54,11 @@ if(isset( $_POST['rejestruj'] )){
 			}
 			rozlacz($p);
 		}else{
-			print("Hasła się niezgadzają");
+			header("Location: ../register.php?kom=passes");
 		}
 	}
 	}else{
-		print("Wymagane jest zaakceptowanie regulaminu.");
+		header("Location: ../register.php?kom=regu");
 	}
 	
 }

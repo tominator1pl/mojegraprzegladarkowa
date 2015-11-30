@@ -17,7 +17,7 @@
 			<a href="przygoda.php" target="iframe-zawartosc"><div class="wybor">
 					Przygoda
 				</div></a>
-			<a href="walka.php" target="iframe-zawartosc"><div class="wybor">
+			<a href="arena.php" target="iframe-zawartosc"><div class="wybor">
 					Arena
 				</div></a>
 			<?php
@@ -30,4 +30,7 @@
 </div>
 <div class="jumbotron col-md-10 col-sm-10 col-xs-12 nie-sidebar">
 <iframe name="iframe-zawartosc" src="postac.php" class="iframe-zawartosc"></iframe>
+</div>
+<div class="jumbotron col-md-12 col-sm-12 col-xs-12 nie-sidebar">
+	<iframe name="iframe-komunikaty" src="komunikaty.php" class="iframe-komunikaty" id="iframe-komunikaty"></iframe>
 </div>

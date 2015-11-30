@@ -5,10 +5,14 @@
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="style.css" media="all" rel="stylesheet" type="text/css">
+	<script>parent.updateKomunikaty()</script>
 	<?php 
 		include_once 'polaczZBD.php';
 		session_start();
-		if(isset($_SESSION['id_user'])) updateTime($_SESSION['id_user']);
+		if(isset($_SESSION['id_user'])){
+			checkPrzygoda($_SESSION['id_player']);
+			updateTime($_SESSION['id_user']);
+		}
 		if(!isset($_GET['noscript'])){
 			echo '
 <noscript>
