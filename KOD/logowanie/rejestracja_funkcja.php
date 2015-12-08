@@ -4,8 +4,8 @@
  * @param $nazwa string ciag znakow do sfiltrowania
  * @return string sfiltrowany ciag znakow
  */
-function filtruj($nazwa){
-	return mysql_real_escape_string(stripslashes($nazwa));
+function filtruj($nazwa, $p){
+	return $p->real_escape_string(stripslashes($nazwa));
 }
 session_start();
 include_once '../polaczZBD.php';
@@ -17,11 +17,11 @@ if(isset( $_POST['rejestruj'] )){
 		}else{
 		if ($_POST['pass'] === $_POST['pass2']){ //hasla sie zgadzja
 			$p = polacz();
-			$login = filtruj($_POST['login']);
-			$pass = filtruj($_POST['pass']);
-			$nick = filtruj($_POST['nick']);
-			$pelna = filtruj($_POST['pelna']);
-			$mail = filtruj($_POST['mail']);
+			$login = filtruj($_POST['login'], $p);
+			$pass = filtruj($_POST['pass'], $p);
+			$nick = filtruj($_POST['nick'], $p);
+			$pelna = filtruj($_POST['pelna'], $p);
+			$mail = filtruj($_POST['mail'], $p);
 			$passw = md5($salt . $pass);
 			$confirm = md5("con" . $login);
 			$czas = date('Y-m-d H:i:s');

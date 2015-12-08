@@ -1,6 +1,6 @@
 <?php
-function filtruj($nazwa){
-    return mysql_real_escape_string(stripslashes($nazwa));
+function filtruj($nazwa, $p){
+    return $p->real_escape_string(stripslashes($nazwa));
 }
 session_start();
 include_once '../../polaczZBD.php';
@@ -11,8 +11,8 @@ if(isset( $_POST['postac'] )) {
         print("Proszę uzupełnić luki.");
     } else {
         $zdjecie=false;
-        $nickname = $_POST['nick'];
         $p = polacz();
+        $nickname = filtruj($_POST['nick'],$p);
         $zapytanie = "SELECT COUNT(*) FROM players WHERE Name_Player = '".$nickname."';";
         $res = $p->query($zapytanie);
         $row = $res->fetch_array(MYSQL_NUM);

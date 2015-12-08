@@ -4,18 +4,19 @@
  * @param $nazwa string ciag znakow do sfiltrowania
  * @return string sfiltrowany ciag znakow
  */
-function filtruj($nazwa){
-	return mysql_real_escape_string(stripslashes($nazwa));
+function filtruj($nazwa, $p){
+	return $p->real_escape_string(stripslashes($nazwa));
 }
 session_start();
 include_once '../polaczZBD.php';
 $salt = "marynowany"; // razem z haslem w md5 aby nie dało się utworzyc tzw. rainbow dictionary.
 if(isset($_POST['login']))
 {
-	$login = filtruj($_POST['login']);
-	$haslo = filtruj($_POST['haslo']);
-	$haslo = md5($salt . $haslo);
 	$p = polacz();
+	$login = filtruj($_POST['login'],$p);
+	$haslo = filtruj($_POST['haslo'],$p);
+	$haslo = md5($salt . $haslo);
+
 
 	$zapytanie = "SELECT * FROM users WHERE Login LIKE '".$login."' AND Pass LIKE '".$haslo."';";
 	$res = $p->query($zapytanie);
