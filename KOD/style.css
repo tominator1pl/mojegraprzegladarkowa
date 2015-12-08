@@ -1,0 +1,134 @@
+.glownaLoguj{
+	background-color: #FFEA9C !important;
+}
+.rejestracja_form{
+	height: 400px;
+    width: 800px;
+    position: fixed;
+    top:  50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -400px;
+}
+
+.sidebar{
+	/*position: absolute;
+	margin-left: 0px !important;*/
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	/*width: 200px;*/
+}
+
+.nie-sidebar{
+	/*position: relative;
+	width: calc(100% - 210px);*/
+	padding-left:10px !important;
+	padding-right:10px !important;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	/*top: 0px;
+	left: 210px;*/
+}
+.wybor{
+	width: calc(100% + 20px);
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left: 10px;
+	margin-left: -10px;
+}
+
+.wybor:hover{
+	background-color: #fafafa !important;
+}
+
+.logowanie-na-stronie{
+	width: 20%;
+}
+
+.moje-logo{
+
+}
+
+.gora-strony{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px !important;
+}
+
+.gora-strony table{
+	width: 100%;
+	height: 230px;
+}
+
+.iframe-zawartosc{
+	width: 100%;
+	height: 60%;
+	border: 0px;
+	}
+
+.jumbotron-color{
+	background-color: #eee;
+}
+
+.row-w-iframe{
+	width: calc(100%);
+}
+
+.table-hoverek{
+	background-color: transparent !important;
+}
+.table-hoverek:hover{
+	background-color: #f5f5f5 !important;
+}
+
+.table-kliked{
+	background-color: #e0e0ff !important;
+}
+.table-kliked:hover{
+	background-color: #f0f0ff !important;
+}
+
+.sklep-haisy{
+	position: absolute;
+	font-size: 18px;
+	top: 4px;
+	right: 0px;
+}
+
+.sklep-hover-div{
+	position: fixed !important;
+	padding: 10px;
+	background-color: #eee;
+	border: 2px solid #aaa;
+	border-radius: 10px;
+}
+.tabelki-iframe{
+	height: 300px !important;
+	overflow: auto;
+}
+.komunikaty{
+	font-family: "Courier New";
+	font-size: 11px;
+	border: 2px solid #aaa;
+	background-color: #fff;
+	height: 100px;
+	overflow: auto;
+}
+.kom-INFO{
+	color: #000;
+}
+.kom-WARNING{
+	color: #f00;
+}
+.kom-ERROR{
+	color: #f50;
+}
+.iframe-komunikaty{
+	width: 100%;
+	height: 100px;
+	border: 0px;
+}
+.tabelki-admin{
+	height: 530px !important;
+	overflow: auto;
+}
